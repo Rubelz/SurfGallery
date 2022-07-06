@@ -2,4 +2,28 @@
     <string name="app_name">SurfGallery</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    AppBars-->
+    <string name="act_bar_login">Login</string>
+    <string name="act_bar_gallery">Gallery</string>
+    <string name="act_bar_fav">Favourites</string>
+    <string name="profile">Profile</string>
+
+    <!--    Login-->
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="incorrect_log">Login or password is incorrect</string>
+    <string name="empty_field">Field can\'t be empty</string>
+
+
+    <!--    Elements-->
+    <string name="main">Main</string>
+    <string name="fav">Favourites</string>
+
+    <!--    Errors-->
+    <string name="refresh">Refresh</string>
+    <string name="unable_1">Unable to load data</string>
+    <string name="unable_2">Refresh this page or try again later</string>
+    <string name="no_internet">No Internet connection\nTry again later</string>
+
 </resources>

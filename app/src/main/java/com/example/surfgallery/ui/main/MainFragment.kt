@@ -1,30 +1,27 @@
-package com.example.surfgallery.ui.login
+package com.example.surfgallery.ui.main
 
-import android.content.Context
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.surfgallery.R
-import com.example.surfgallery.databinding.FragmentLoginBinding
 
-class LoginFragment : Fragment() {
+class MainFragment : Fragment() {
 
-    private lateinit var bind: FragmentLoginBinding
+    companion object {
+        fun newInstance() = MainFragment()
+    }
+
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        bind = FragmentLoginBinding.inflate(inflater)
-
-        return bind.root
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
-
-
-
 
 
 }
