@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.surfgallery.R
+import com.example.surfgallery.databinding.FragmentGalleryBinding
 
 class GalleryFragment : Fragment() {
 
+    private lateinit var bind: FragmentGalleryBinding
 
     private lateinit var viewModel: GalleryViewModel
 
@@ -17,8 +19,16 @@ class GalleryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_gallery, container, false)
+        bind =
+            FragmentGalleryBinding.inflate(
+                LayoutInflater.from(inflater.context),
+                container, false
+            )
+        return bind.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 
 }

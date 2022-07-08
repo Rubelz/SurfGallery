@@ -2,8 +2,14 @@ package com.example.surfgallery
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.replace
+import androidx.navigation.NavHost
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.surfgallery.databinding.ActivityMainBinding
 import com.example.surfgallery.ui.login.LoginFragment
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,12 +21,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(bind.root)
 
 
+        val navHostFrag =
+            supportFragmentManager.findFragmentById(R.id.fragContainer) as NavHostFragment
+        val navController = navHostFrag.navController
 
-        val transact = supportFragmentManager.beginTransaction()
-            .addToBackStack(null)
-            .replace(R.id.fragContainer, LoginFragment())
-
-        transact.commit()
+        navController.navigate(R.id.loginFragment)
 
 
 
