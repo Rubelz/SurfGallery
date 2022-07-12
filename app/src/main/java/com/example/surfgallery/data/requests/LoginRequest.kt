@@ -1,4 +1,4 @@
-package com.example.surfgallery.data.models
+package com.example.surfgallery.data.requests
 
 
 import com.google.gson.annotations.SerializedName
