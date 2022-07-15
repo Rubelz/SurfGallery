@@ -3,9 +3,11 @@ package com.example.surfgallery.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.surfgallery.utils.Consts
 import com.example.surfgallery.utils.Consts.APP_PREF
 import com.example.surfgallery.utils.Consts.PREFS_KEY_RETROFIT_1
+import com.example.surfgallery.utils.Consts.TOKEN_NOT_FOUND
 
 class SessionManager(context: Context) {
     private var prefs: SharedPreferences =

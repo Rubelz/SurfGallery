@@ -22,7 +22,6 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             val response = Retrofit.getInstance().create(UserService::class.java)
             val result = response.login(LoginRequest(phone, password)).body()
-
             if (result?.token != null) {
                 _loginResult.postValue(result?.token)
             } else {

@@ -35,4 +35,19 @@
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/gallery"
+        android:name="com.example.surfgallery.ui.gallery.GalleryFragment"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_gallery" />
+    <fragment
+        android:id="@+id/favourites"
+        android:name="com.example.surfgallery.ui.favs.FavouritesFragment"
+        android:label="favourites"
+        tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.surfgallery.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.surfgallery.ui.login
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.example.surfgallery.data.Retrofit
 import com.example.surfgallery.data.api.UserService
 import com.example.surfgallery.data.requests.LoginRequest
 import com.example.surfgallery.databinding.FragmentLoginBinding
+import com.example.surfgallery.utils.Consts
 import com.example.surfgallery.utils.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -31,14 +33,23 @@ class LoginFragment : Fragment() {
 
     private lateinit var sessionManager: SessionManager
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        sessionManager = SessionManager(requireContext())
+        val token = sessionManager.fetchToken()
+        if(!token.isNullOrBlank()){
+            findNavController().navigate(R.id.loginToMain)
+        }
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         bind = FragmentLoginBinding.inflate(inflater)
-
-        sessionManager = SessionManager(requireContext())
 
         return bind.root
     }
@@ -57,11 +68,11 @@ class LoginFragment : Fragment() {
             if (bind.etPass.text.toString().isNotBlank() && bind.etLogin.text.toString()
                     .isNotBlank()
             ) {
-                val retrofit = Retrofit.getInstance().create(UserService::class.java)
+//                val retrofit = Retrofit.getInstance().create(UserService::class.java)
                 val phone = bind.etLogin.text.toString()
                 val psswd = bind.etPass.text.toString()
                 CoroutineScope(IO).launch {
-                    val response = retrofit.login(LoginRequest(phone, psswd)).body()
+//                    val response = retrofit.login(LoginRequest(phone, psswd)).body()
                     loginVM.login(phone, psswd)
                 }
 
@@ -71,4 +82,5 @@ class LoginFragment : Fragment() {
 
         }
     }
+
 }
