@@ -37,12 +37,11 @@ class LoginFragment : Fragment() {
         super.onAttach(context)
 
         sessionManager = SessionManager(requireContext())
-        val token = sessionManager.fetchToken()
-        if(!token.isNullOrBlank()){
-            findNavController().navigate(R.id.loginToMain)
+        CoroutineScope(IO).launch {
+            loginVM.login(sessionManager)
         }
-
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +58,7 @@ class LoginFragment : Fragment() {
 
         loginVM.loginResult.observe(viewLifecycleOwner, Observer { value ->
             sessionManager.saveToken(value)
-            if (value != null) {
+            if (!value.isNullOrBlank()) {
                 findNavController().navigate(R.id.loginToMain)
             }
         })
@@ -68,11 +67,9 @@ class LoginFragment : Fragment() {
             if (bind.etPass.text.toString().isNotBlank() && bind.etLogin.text.toString()
                     .isNotBlank()
             ) {
-//                val retrofit = Retrofit.getInstance().create(UserService::class.java)
                 val phone = bind.etLogin.text.toString()
                 val psswd = bind.etPass.text.toString()
                 CoroutineScope(IO).launch {
-//                    val response = retrofit.login(LoginRequest(phone, psswd)).body()
                     loginVM.login(phone, psswd)
                 }
 
@@ -81,6 +78,7 @@ class LoginFragment : Fragment() {
             }
 
         }
+
     }
 
 }

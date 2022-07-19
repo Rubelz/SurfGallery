@@ -17,7 +17,7 @@ class SessionManager(context: Context) {
         const val USER_TOKEN = "USER_T0KEN"
     }
 
-    fun saveToken(token: String) {
+    fun saveToken(token: String?) {
         prefs.edit()
             .putString(USER_TOKEN, token)
             .apply()
@@ -29,7 +29,7 @@ class SessionManager(context: Context) {
 
     fun removeToken() {
         prefs.edit()
-            .putString(PREFS_KEY_RETROFIT_1, null)
+            .putString(USER_TOKEN, null)
             .apply()
     }
 

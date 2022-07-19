@@ -21,10 +21,11 @@ class GalleryViewModel : ViewModel() {
             val result = response.getPictures(token = "Token ${sessionManager.fetchToken()}")
 
             Log.d("MyTag", result.body().toString())
-            if (result.body() != null) {
+            if (result.body().isNullOrEmpty()) {
+                sessionManager.removeToken()
+            } else {
                 val pictures = result.body()
                 _image.postValue(pictures)
-            } else {
 
                 // TODO: Show an Error
             }

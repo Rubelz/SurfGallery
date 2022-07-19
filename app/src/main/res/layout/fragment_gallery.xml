@@ -8,6 +8,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvGallery"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        android:paddingHorizontal="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_gallery" />
