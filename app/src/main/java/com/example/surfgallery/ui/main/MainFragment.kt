@@ -1,17 +1,15 @@
 package com.example.surfgallery.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Gallery
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.surfgallery.R
+import com.example.surfgallery.data.room.UserReciever
+import com.example.surfgallery.data.room.UserViewModel
 import com.example.surfgallery.databinding.FragmentMainBinding
 import com.example.surfgallery.ui.favs.FavouritesFragment
 import com.example.surfgallery.ui.gallery.GalleryFragment
@@ -22,7 +20,7 @@ class MainFragment : Fragment() {
 
     private lateinit var bind: FragmentMainBinding
 
-    private lateinit var viewModel: MainViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,15 +35,21 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bundle = arguments
+        val user = (bundle?.getSerializable("UserInfo")) as UserReciever
+
         navigateTo(GalleryFragment())
         bind.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.gallery -> navigateTo(GalleryFragment())
                 R.id.favourites -> navigateTo(FavouritesFragment())
                 R.id.profile -> navigateTo(ProfileFragment())
             }
             true
         }
+
+        val profile: UserSender = ProfileFragment()
+        profile.sendUser(user.user)
 
 
     }

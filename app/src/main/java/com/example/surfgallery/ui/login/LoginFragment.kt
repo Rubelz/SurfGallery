@@ -7,23 +7,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.surfgallery.R
-import com.example.surfgallery.data.Retrofit
-import com.example.surfgallery.data.api.UserService
-import com.example.surfgallery.data.requests.LoginRequest
+import com.example.surfgallery.data.models.User
+import com.example.surfgallery.data.room.UserReciever
+import com.example.surfgallery.data.room.UserViewModel
 import com.example.surfgallery.databinding.FragmentLoginBinding
-import com.example.surfgallery.utils.Consts
 import com.example.surfgallery.utils.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class LoginFragment : Fragment() {
 
@@ -32,6 +31,7 @@ class LoginFragment : Fragment() {
     private val loginVM: LoginViewModel by viewModels()
 
     private lateinit var sessionManager: SessionManager
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -59,8 +59,23 @@ class LoginFragment : Fragment() {
         loginVM.loginResult.observe(viewLifecycleOwner, Observer { value ->
             sessionManager.saveToken(value)
             if (!value.isNullOrBlank()) {
-                findNavController().navigate(R.id.loginToMain)
+                CoroutineScope(Main).launch {
+                    val userRec = UserReciever()
+                    val bundle = Bundle()
+                    bundle.putSerializable("UserInfo", userRec)
+
+                    delay(500)
+
+                    findNavController().navigate(R.id.loginToMain, bundle)
+                }
+
             }
+        })
+
+
+        loginVM.userResult.observe(viewLifecycleOwner, Observer { value ->
+
+
         })
 
         bind.btnLogin.setOnClickListener {
@@ -80,5 +95,6 @@ class LoginFragment : Fragment() {
         }
 
     }
+
 
 }

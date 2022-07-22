@@ -20,7 +20,6 @@ class GalleryViewModel : ViewModel() {
             val response = Retrofit.getInstance().create(PictureService::class.java)
             val result = response.getPictures(token = "Token ${sessionManager.fetchToken()}")
 
-            Log.d("MyTag", result.body().toString())
             if (result.body().isNullOrEmpty()) {
                 sessionManager.removeToken()
             } else {
