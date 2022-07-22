@@ -2,20 +2,14 @@ package com.example.surfgallery.ui.login
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.surfgallery.R
-import com.example.surfgallery.data.models.User
-import com.example.surfgallery.data.room.UserReciever
-import com.example.surfgallery.data.room.UserViewModel
 import com.example.surfgallery.databinding.FragmentLoginBinding
 import com.example.surfgallery.utils.SessionManager
 import kotlinx.coroutines.CoroutineScope
@@ -59,15 +53,9 @@ class LoginFragment : Fragment() {
         loginVM.loginResult.observe(viewLifecycleOwner, Observer { value ->
             sessionManager.saveToken(value)
             if (!value.isNullOrBlank()) {
-                CoroutineScope(Main).launch {
-                    val userRec = UserReciever()
-                    val bundle = Bundle()
-                    bundle.putSerializable("UserInfo", userRec)
 
-                    delay(500)
+                findNavController().navigate(R.id.loginToMain)
 
-                    findNavController().navigate(R.id.loginToMain, bundle)
-                }
 
             }
         })

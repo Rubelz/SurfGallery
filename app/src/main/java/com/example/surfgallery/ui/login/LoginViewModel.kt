@@ -1,8 +1,5 @@
 package com.example.surfgallery.ui.login
 
-import android.se.omapi.Session
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,11 +8,8 @@ import com.example.surfgallery.data.Retrofit
 import com.example.surfgallery.data.api.UserService
 import com.example.surfgallery.data.models.User
 import com.example.surfgallery.data.requests.LoginRequest
-import com.example.surfgallery.data.room.UserReciever
 import com.example.surfgallery.utils.SessionManager
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class LoginViewModel : ViewModel() {
 
@@ -51,7 +45,6 @@ class LoginViewModel : ViewModel() {
 
         }
     }
-
 
 
     override fun onCleared() {
