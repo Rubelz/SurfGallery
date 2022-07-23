@@ -8,10 +8,13 @@ import com.example.surfgallery.data.Retrofit
 import com.example.surfgallery.data.api.UserService
 import com.example.surfgallery.data.models.User
 import com.example.surfgallery.data.requests.LoginRequest
+import com.example.surfgallery.data.room.UserDao
 import com.example.surfgallery.utils.SessionManager
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel() : ViewModel() {
 
     private var _tokenResult = MutableLiveData<String>()
     private var _userResult = MutableLiveData<User>()
@@ -36,7 +39,6 @@ class LoginViewModel : ViewModel() {
             val response = Retrofit.getInstance().create(UserService::class.java)
             val result = response.login(LoginRequest(phone, password)).body()
             if (result?.token != null && result?.userInfo != null) {
-                _userResult.postValue(result.userInfo)
                 _tokenResult.postValue(result.token)
 
             } else {
@@ -46,6 +48,14 @@ class LoginViewModel : ViewModel() {
         }
     }
 
+
+    private suspend fun addUserToDb(userDao: UserDao, user: User?) {
+        viewModelScope.launch(IO) {
+            if (user != null) {
+                userDao.addUser(user)
+            }
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()

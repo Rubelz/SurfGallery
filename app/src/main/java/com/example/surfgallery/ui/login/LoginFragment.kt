@@ -2,6 +2,7 @@ package com.example.surfgallery.ui.login
 
 import android.content.Context
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,6 @@ class LoginFragment : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,6 +65,8 @@ class LoginFragment : Fragment() {
 
 
         })
+
+        bind.etLogin.addTextChangedListener(object : PhoneNumberFormattingTextWatcher("RU") {})
 
         bind.btnLogin.setOnClickListener {
             if (bind.etPass.text.toString().isNotBlank() && bind.etLogin.text.toString()

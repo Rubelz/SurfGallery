@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/et_style"
                     android:hint="Логин"
-                    android:inputType="text" />
+                    android:inputType="phone" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
