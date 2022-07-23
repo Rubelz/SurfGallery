@@ -4,7 +4,7 @@ A Gallery with users and images loaded from database
 Login/Password: +71234567890 / qwerty ; +79876543219 / qwerty ; +78005003030 / qwerty
 
 
-![Main Page](/SurfGallery/tree/main/imagesmain.png")
-<img src="SurfGallery/images/Profile.png" alt="Profile">
-<img src="SurfGallery/images/about_photo.png" alt="Image About">
-<img src="SurfGallery/images/favs.png" alt="Favourite Images">
+<img src="https://github.com/Rubelz/SurfGallery/blob/main/images/Profile.png?raw=true" alt="Main">
+<img src="https://github.com/Rubelz/SurfGallery/blob/main/images/about_photo.png?raw=true" alt="Profile">
+<img src="https://github.com/Rubelz/SurfGallery/blob/main/images/favs.png?raw=true" alt="Image About">
+<img src="https://github.com/Rubelz/SurfGallery/blob/main/images/main.png?raw=true" alt="Favourite Images">
